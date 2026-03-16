@@ -7,12 +7,11 @@
   "hooks": {
     "PostToolUse": [
       {
-        "matcher": "Edit|MultiEdit|Write|str_replace_based_edit_tool",
+        "matcher": "Edit|Write",
         "hooks": [
           {
             "type": "command",
-            "command": "python3 hooks/snyk-post-edit.py",
-            "commandWindows": "python hooks\\snyk-post-edit.py"
+            "command": "python3 ~/.claude/hooks/snyk-post-edit.py"
           }
         ]
       }
@@ -23,8 +22,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 hooks/snyk-pre-commit.py",
-            "commandWindows": "python hooks\\snyk-pre-commit.py"
+            "command": "python3 ~/.claude/hooks/snyk-pre-commit.py"
           }
         ]
       }
@@ -35,8 +33,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 hooks/snyk-stop-report.py",
-            "commandWindows": "python hooks\\snyk-stop-report.py"
+            "command": "python3 ~/.claude/hooks/snyk-stop-report.py"
           }
         ]
       }
