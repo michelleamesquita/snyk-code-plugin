@@ -1,0 +1,45 @@
+{
+  "name": "snyk-code",
+  "version": "1.0.0",
+  "description": "Plugin de segurança SAST para Claude Code usando Snyk. Inclui skill de workflow, hooks automáticos (scan pós-edição, bloqueio de commit, relatório final) e referências CWE/OWASP LLM Top 10.",
+  "author": "Michelle",
+  "license": "MIT",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|MultiEdit|Write|str_replace_based_edit_tool",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 hooks/snyk-post-edit.py",
+            "commandWindows": "python hooks\\snyk-post-edit.py"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 hooks/snyk-pre-commit.py",
+            "commandWindows": "python hooks\\snyk-pre-commit.py"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 hooks/snyk-stop-report.py",
+            "commandWindows": "python hooks\\snyk-stop-report.py"
+          }
+        ]
+      }
+    ]
+  }
+}
